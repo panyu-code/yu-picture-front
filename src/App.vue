@@ -5,10 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import BasicLayout from '@/layouts/BasicLayout.vue'
-import { useLoginUserStore } from '@/stores/loginUser.ts'
+import BasicLayout from '@/layouts/basic/BasicLayout.vue'
 
-useLoginUserStore().getLoginUser()
 </script>
 
 <style scoped></style>
