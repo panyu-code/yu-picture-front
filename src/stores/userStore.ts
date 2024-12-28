@@ -1,6 +1,6 @@
 // stores/user.js
 import { defineStore } from 'pinia'
-import { CURRENT_USER } from '@/constant/constant.ts'
+import { CURRENT_USER } from '@/constant'
 
 export const useUserStore = defineStore('user', {
   state: () => ({

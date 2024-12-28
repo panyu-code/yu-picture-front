@@ -70,10 +70,22 @@ const items = ref<MenuProps['items']>([
     title: '主页',
   },
   {
+    key: '/picture/add',
+    icon: () => h(HomeOutlined),
+    label: '创建图片',
+    title: '创建图片',
+  },
+  {
     key: '/admin/manage',
     icon: () => h(AppstoreOutlined),
     label: '用户管理',
     title: '用户管理',
+  },
+  {
+    key: '/picture/manage',
+    icon: () => h(AppstoreOutlined),
+    label: '图片管理',
+    title: '图片管理',
   },
   {
     key: 'others',

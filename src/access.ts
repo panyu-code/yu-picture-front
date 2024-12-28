@@ -1,6 +1,6 @@
 // 全局前置守卫
 import router from '@/router'
-import { CURRENT_USER } from '@/constant/constant.ts'
+import { CURRENT_USER } from '@/constant'
 import { message } from 'ant-design-vue'
 
 router.beforeEach((to, from, next) => {

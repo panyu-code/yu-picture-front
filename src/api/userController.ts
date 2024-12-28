@@ -49,7 +49,7 @@ export async function getUserByIdUsingGet(
 }
 
 /** 查询用户列表 POST /api/user/list */
-export async function listUserUsingPost(body: API.DTO, options?: { [key: string]: any }) {
+export async function listUserUsingPost(body: API.DTO1, options?: { [key: string]: any }) {
   return request<API.ResponseResultPageVO_>('/api/user/list', {
     method: 'POST',
     headers: {
@@ -74,7 +74,7 @@ export async function doLoginUsingPost(body: API.DTO4, options?: { [key: string]
 
 /** 退出登录 POST /api/user/logout */
 export async function doLogoutUsingPost(options?: { [key: string]: any }) {
-  return request<API.ResponseResultVoid_>('/api/user/logout', {
+  return request<API.ResponseResultBoolean_>('/api/user/logout', {
     method: 'POST',
     ...(options || {}),
   })
