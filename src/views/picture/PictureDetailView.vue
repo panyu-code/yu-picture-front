@@ -140,7 +140,7 @@ const doDelete = () => {
           message.success('删除成功')
           router.back()
         } else {
-          message.error('删除失败')
+          message.error('删除失败!'+res.msg)
         }
       })
     },

@@ -17,6 +17,15 @@
           allowClear
         />
       </a-form-item>
+      <a-form-item label="审核状态" name="reviewStatus">
+        <a-select
+          v-model:value="searchParams.reviewStatus"
+          :options="PIC_REVIEW_STATUS_OPTIONS"
+          placeholder="请输入审核状态"
+          style="min-width: 180px"
+          allow-clear
+        />
+      </a-form-item>
       <a-form-item label="创建时间">
         <a-range-picker
           v-model:value="searchParams.createTimeRange"
@@ -26,7 +35,7 @@
         />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="fetchData">搜索</a-button>
+        <a-button type="primary" @click="fetchData(1)">搜索</a-button>
       </a-form-item>
     </a-form>
     <div style="margin-bottom: 20px"></div>
@@ -65,9 +74,28 @@
         <template v-if="column.dataIndex === 'createTime'">
           <span>{{ dayjs(record.createTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
         </template>
+        <template v-if="column.dataIndex === 'reviewMessage'">
+          {{ recode }}
+          <div>审核状态：{{ PIC_REVIEW_STATUS_MAP[record.reviewStatus] }}</div>
+          <div>审核信息：{{ record.reviewMessage }}</div>
+          <div>审核人：{{ record.reviewerId }}</div>
+        </template>
         <template v-if="column.key === 'action'">
-          <a-space>
-            <a-button type="link" :href="`/picture/add?id=${record.id}`">编辑 </a-button>
+          <a-space wrap>
+            <a-button
+              type="primary"
+              v-if="record.reviewStatus !== PIC_REVIEW_STATUS_ENUM.PASS"
+              @click="handleReview(record, PIC_REVIEW_STATUS_ENUM.PASS)"
+              >通过
+            </a-button>
+            <a-button
+              type="primary"
+              danger
+              v-if="record.reviewStatus !== PIC_REVIEW_STATUS_ENUM.REJECT"
+              @click="handleReview(record, PIC_REVIEW_STATUS_ENUM.REJECT)"
+              >拒绝
+            </a-button>
+            <a-button type="link" :href="`/picture/add?id=${record.id}`">编辑</a-button>
             <a-button type="primary" danger @click="deleteData(record.id)">删除</a-button>
           </a-space>
         </template>
@@ -76,12 +104,21 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, createVNode, onMounted, reactive, ref } from 'vue'
+import { computed, createVNode, onMounted, reactive, ref, watch } from 'vue'
 import { deleteUserUsingDelete, listUserUsingPost } from '@/api/userController.ts'
 import { message, Modal } from 'ant-design-vue'
 import dayjs from 'dayjs'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { deletePictureUsingDelete, listPictureByPageUsingPost } from '@/api/pictureController.ts'
+import {
+  deletePictureUsingDelete,
+  doPictureReviewUsingPost,
+  listPictureByPageUsingPost,
+} from '@/api/pictureController.ts'
+import {
+  PIC_REVIEW_STATUS_ENUM,
+  PIC_REVIEW_STATUS_MAP,
+  PIC_REVIEW_STATUS_OPTIONS,
+} from '@/constant'
 
 /**
  * 表格列
@@ -133,6 +170,11 @@ const columns = [
     align: 'center',
   },
   {
+    title: '审核信息',
+    dataIndex: 'reviewMessage',
+    align: 'center',
+  },
+  {
     title: '操作',
     key: 'action',
     align: 'center',
@@ -156,6 +198,7 @@ const searchParams = reactive({
   category: '',
   tags: [],
   createTimeRange: [],
+  reviewStatus: null,
 })
 /**
  * 分页器
@@ -174,11 +217,13 @@ const pagination = computed(() => {
  * 获取数据
  */
 const fetchData = async (current) => {
+  console.log('current----' + current)
   if (current) {
     searchParams.current = current
   }
   const res = await listPictureByPageUsingPost({ ...searchParams })
   if (res.code === 0) {
+    console.log(res.data.records)
     dataList.value = res.data.records ?? []
     total.value = res.data.total ?? 0
   } else {
@@ -213,6 +258,23 @@ const deleteData = (id) => {
         })
     },
   })
+}
+
+const handleReview = async (record: API.Picture, reviewStatus: number) => {
+  const reviewMessage =
+    reviewStatus === PIC_REVIEW_STATUS_ENUM.PASS ? '管理员操作通过' : '管理员操作拒绝'
+  const res = await doPictureReviewUsingPost({
+    id: record.id,
+    reviewStatus,
+    reviewMessage,
+  })
+  if (res.code === 0) {
+    message.success('审核操作成功')
+    // 重新获取列表
+    await fetchData()
+  } else {
+    message.error('审核操作失败，' + res.data.message)
+  }
 }
 
 onMounted(() => {

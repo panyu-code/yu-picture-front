@@ -6,15 +6,18 @@ declare namespace API {
 
   type DTO = {
     category?: string
+    createTimeRange?: string[]
     /** 当前页号 */
     current?: number
     format?: string
     height?: number
-    id?: number
     introduction?: string
     name?: string
     /** 当前页码 */
     pageSize?: number
+    reviewMessage?: string
+    reviewStatus?: number
+    reviewerId?: number
     scale?: number
     searchText?: string
     size?: number
@@ -102,12 +105,17 @@ declare namespace API {
     introduction?: string
     isDelete?: number
     name?: string
+    reviewMessage?: string
+    reviewStatus?: number
+    reviewTime?: string
+    reviewerId?: number
     scale?: number
     size?: number
     tags?: string
     updateTime?: string
     url?: string
     userId?: number
+    username?: string
     width?: number
   }
 
@@ -117,6 +125,12 @@ declare namespace API {
     introduction?: string
     name?: string
     tags?: string[]
+  }
+
+  type PictureReviewDTO = {
+    id?: number
+    reviewMessage?: string
+    reviewStatus?: number
   }
 
   type PictureTagCategoryVO = {

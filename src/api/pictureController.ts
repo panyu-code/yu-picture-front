@@ -86,6 +86,21 @@ export async function listPictureVoByPageUsingPost(
   })
 }
 
+/** 图片审核 POST /api/picture/review */
+export async function doPictureReviewUsingPost(
+  body: API.PictureReviewDTO,
+  options?: { [key: string]: any }
+) {
+  return request<API.ResponseResultBoolean_>('/api/picture/review', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  })
+}
+
 /** 获取图片标签和分类列表 GET /api/picture/tag_category */
 export async function listPictureTagCategoryUsingGet(options?: { [key: string]: any }) {
   return request<API.ResponseResultPictureTagCategoryVO_>('/api/picture/tag_category', {

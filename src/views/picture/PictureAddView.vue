@@ -78,7 +78,7 @@ const handleSubmit = async (values: any) => {
   const res = await editPictureUsingPost({ ...values, pictureId })
   if (res.code === 0) {
     message.success('创建成功!')
-    await router.push(`/picture/${pictureId}`)
+    await router.push(`/picture/detail/${pictureId}`)
   } else {
     message.error(res.msg)
   }

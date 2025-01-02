@@ -72,8 +72,8 @@ const items = ref<MenuProps['items']>([
   {
     key: '/picture/add',
     icon: () => h(HomeOutlined),
-    label: '创建图片',
-    title: '创建图片',
+    label: '上传图片',
+    title: '上传图片',
   },
   {
     key: '/admin/manage',
