@@ -2,6 +2,7 @@
 import router from '@/router'
 import { CURRENT_USER } from '@/constant'
 import { message } from 'ant-design-vue'
+import { checkLogin } from '@/util'
 
 router.beforeEach((to, from, next) => {
   // 若是登录页面，直接放行
@@ -9,7 +10,7 @@ router.beforeEach((to, from, next) => {
     next()
     return
   }
-  if (!localStorage.getItem(CURRENT_USER)) {
+  if (!checkLogin()) {
     message.error('请先登录')
     next('/user/login')
     return

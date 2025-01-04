@@ -13,6 +13,15 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0',
     port: 3000,
+    proxy: {
+      // 匹配以 /api 开头的请求
+      '/api': {
+        target: 'http://localhost:8080', // 后端服务地址
+        changeOrigin: true, // 是否修改源
+        rewrite: (path) => path.replace(/^\/api/, ''), // 去掉 /api 前缀
+      },
+    },
   },
 })

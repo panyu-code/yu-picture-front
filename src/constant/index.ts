@@ -2,7 +2,8 @@
  * 当前登录用户
  */
 export const CURRENT_USER = 'user'
-
+export const EXPIRE_TIME = new Date().getTime() + 24 * 60 * 60 * 1000
+export const COOKIE_EXPIRES = 'cookieExpires'
 export const PIC_REVIEW_STATUS_ENUM = {
   REVIEWING: 0,
   PASS: 1,
@@ -21,8 +22,3 @@ export const PIC_REVIEW_STATUS_OPTIONS = Object.keys(PIC_REVIEW_STATUS_MAP).map(
     value: key,
   }
 })
-
-
-
-
-

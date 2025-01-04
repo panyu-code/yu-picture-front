@@ -48,6 +48,7 @@ import router from '@/router'
 import { doLoginUsingPost } from '@/api/userController.ts'
 import { reactive } from 'vue'
 import { useUserStore } from '@/stores/userStore.ts'
+import { startExpirationChecker } from '@/util'
 
 const userStore = useUserStore()
 const loginForm = reactive({
@@ -59,6 +60,8 @@ const submit = async (values: any) => {
   if (res.code === 0) {
     message.success('登录成功')
     userStore.login(res.data)
+    // 启动检查器
+    await startExpirationChecker()
     await router.replace('/')
   } else {
     message.error(res.msg)

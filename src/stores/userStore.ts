@@ -1,6 +1,6 @@
 // stores/user.js
 import { defineStore } from 'pinia'
-import { CURRENT_USER } from '@/constant'
+import { COOKIE_EXPIRES, CURRENT_USER, EXPIRE_TIME } from '@/constant'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -13,6 +13,7 @@ export const useUserStore = defineStore('user', {
       this.userInfo = user
       this.isLoggedIn = true
       localStorage.setItem(CURRENT_USER, JSON.stringify(user))
+      localStorage.setItem(COOKIE_EXPIRES, EXPIRE_TIME.toString())
     },
 
     logout() {
