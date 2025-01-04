@@ -9,7 +9,16 @@
     <h2 style="margin-bottom: 16px; text-align: center">
       {{ route.query?.id ? '编辑图片' : '添加图片' }}
     </h2>
-    <PictureUploadComponent :picture="picture" :on-success="onSuccess" />
+    <!-- 选择上传方式 -->
+    <a-tabs v-model:activeKey="uploadType"
+      >>
+      <a-tab-pane key="file" tab="文件上传">
+        <PictureUploadComponent :picture="picture" :on-success="onSuccess" />
+      </a-tab-pane>
+      <a-tab-pane key="url" tab="URL 上传" force-render>
+        <UrlPictureUploadComponent :picture="picture" :on-success="onSuccess" />
+      </a-tab-pane>
+    </a-tabs>
     <a-form v-if="picture" layout="vertical" :model="pictureForm" @finish="handleSubmit">
       <a-form-item label="id" name="id" style="display: none">
         <a-input v-model:value="pictureForm.id" />
@@ -60,6 +69,7 @@ import {
 import { message } from 'ant-design-vue'
 import router from '@/router'
 import { useRoute } from 'vue-router'
+import UrlPictureUploadComponent from '@/components/picture/UrlPictureUploadComponent.vue'
 
 const route = useRoute()
 const picture = ref<API.PictureVO>()
@@ -69,7 +79,7 @@ const onSuccess = (newPicture: API.PictureVO) => {
   pictureForm.id = newPicture.id
 }
 const pictureForm = reactive<API.PictureEditDTO>({})
-
+const uploadType = ref<'file' | 'url'>('file')
 const handleSubmit = async (values: any) => {
   const pictureId = picture.value?.id
   if (!pictureId) {

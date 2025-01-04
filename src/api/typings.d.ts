@@ -5,43 +5,89 @@ declare namespace API {
   }
 
   type DTO = {
-    category?: string
-    createTimeRange?: string[]
-    /** 当前页号 */
-    current?: number
-    format?: string
-    height?: number
-    introduction?: string
-    name?: string
-    /** 当前页码 */
-    pageSize?: number
+    /** id */
+    id?: number
+    /** 审核信息 */
     reviewMessage?: string
+    /** 状态：0-待审核, 1-通过, 2-拒绝 */
     reviewStatus?: number
-    reviewerId?: number
-    scale?: number
-    searchText?: string
-    size?: number
-    tags?: string[]
-    userId?: number
-    width?: number
-  }
-
-  type DTO1 = {
-    createTimeRange?: string[]
-    /** 当前页号 */
-    current?: number
-    nickname?: string
-    /** 当前页码 */
-    pageSize?: number
-    username?: string
   }
 
   type DTO2 = {
+    /** 分类 */
+    category?: string
+    /** 创建时间范围 */
+    createTimeRange?: string[]
+    /** 当前页号 */
+    current?: number
+    /** 图片格式 */
+    format?: string
+    /** 图片高度 */
+    height?: number
+    /** 简介 */
+    introduction?: string
+    /** 图片名称 */
+    name?: string
+    /** 当前页码 */
+    pageSize?: number
+    /** 审核信息 */
+    reviewMessage?: string
+    /** 状态：0-待审核; 1-通过; 2-拒绝 */
+    reviewStatus?: number
+    /** 审核人 id */
+    reviewerId?: number
+    /** 图片比例 */
+    scale?: number
+    /** 搜索词（同时搜名称、简介等） */
+    searchText?: string
+    /** 文件体积 */
+    size?: number
+    /** 标签 */
+    tags?: string[]
+    /** 用户 id */
+    userId?: number
+    /** 图片宽度 */
+    width?: number
+  }
+
+  type DTO3 = {
     /** 用户名 */
     username?: string
   }
 
-  type DTO3 = {
+  type DTO4 = {
+    /** 年龄 */
+    age?: number
+    /** 头像 */
+    avatar?: string
+    /** 邮箱 */
+    email?: string
+    /** 性别 */
+    gender?: number
+    /** 用户id */
+    id?: number
+    /** 昵称 */
+    nickname?: string
+    /** 手机号 */
+    phone?: string
+    /** 用户名 */
+    username?: string
+  }
+
+  type DTO5 = {
+    /** 创建时间范围 */
+    createTimeRange?: string[]
+    /** 当前页号 */
+    current?: number
+    /** 昵称 */
+    nickname?: string
+    /** 当前页码 */
+    pageSize?: number
+    /** 用户名(账号) */
+    username?: string
+  }
+
+  type DTO6 = {
     /** 密码 */
     password?: string
     /** 确认密码 */
@@ -50,7 +96,7 @@ declare namespace API {
     username?: string
   }
 
-  type DTO4 = {
+  type DTO7 = {
     /** 密码 */
     password?: string
     /** 用户名 */
@@ -80,15 +126,15 @@ declare namespace API {
     total?: number
   }
 
-  type PagePictureVO_ = {
+  type PageVO_ = {
     current?: number
     pages?: number
-    records?: PictureVO[]
+    records?: VO[]
     size?: number
     total?: number
   }
 
-  type PageVO_ = {
+  type PageVO2 = {
     current?: number
     pages?: number
     records?: VO1[]
@@ -119,49 +165,30 @@ declare namespace API {
     width?: number
   }
 
-  type PictureEditDTO = {
+  type Pinyin__ = {
+    /** 分类 */
     category?: string
+    /** id */
     id?: number
+    /** 简介 */
     introduction?: string
+    /** 图片名称 */
     name?: string
+    /** 标签 */
     tags?: string[]
   }
 
-  type PictureReviewDTO = {
-    id?: number
-    reviewMessage?: string
-    reviewStatus?: number
-  }
-
-  type PictureTagCategoryVO = {
-    categoryList?: string[]
-    tagList?: string[]
-  }
-
-  type PictureUpdateDTO = {
+  type Pinyin_2 = {
+    /** 分类 */
     category?: string
+    /** id */
     id?: number
+    /** 简介 */
     introduction?: string
+    /** 图片名称 */
     name?: string
+    /** 标签 */
     tags?: string[]
-  }
-
-  type PictureVO = {
-    category?: string
-    createTime?: string
-    format?: string
-    height?: number
-    id?: number
-    introduction?: string
-    name?: string
-    scale?: number
-    size?: number
-    tags?: string[]
-    updateTime?: string
-    url?: string
-    user?: VO
-    userId?: number
-    width?: number
   }
 
   type ResponseResultBoolean_ = {
@@ -185,13 +212,6 @@ declare namespace API {
     timestamp?: number
   }
 
-  type ResponseResultPagePictureVO_ = {
-    code?: number
-    data?: PagePictureVO_
-    msg?: string
-    timestamp?: number
-  }
-
   type ResponseResultPageVO_ = {
     code?: number
     data?: PageVO_
@@ -199,23 +219,16 @@ declare namespace API {
     timestamp?: number
   }
 
+  type ResponseResultPageVO2 = {
+    code?: number
+    data?: PageVO2
+    msg?: string
+    timestamp?: number
+  }
+
   type ResponseResultPicture_ = {
     code?: number
     data?: Picture
-    msg?: string
-    timestamp?: number
-  }
-
-  type ResponseResultPictureTagCategoryVO_ = {
-    code?: number
-    data?: PictureTagCategoryVO
-    msg?: string
-    timestamp?: number
-  }
-
-  type ResponseResultPictureVO_ = {
-    code?: number
-    data?: PictureVO
     msg?: string
     timestamp?: number
   }
@@ -241,14 +254,35 @@ declare namespace API {
     timestamp?: number
   }
 
+  type ResponseResultVO2 = {
+    code?: number
+    data?: VO2
+    msg?: string
+    timestamp?: number
+  }
+
+  type ResponseResultVO3 = {
+    code?: number
+    data?: VO3
+    msg?: string
+    timestamp?: number
+  }
+
   type testDownloadFileUsingGETParams = {
     /** filepath */
     filepath?: string
   }
 
+  type uploadPictureByUrlUsingPOSTParams = {
+    /** pictureId */
+    pictureId: number
+    /** url */
+    url: string
+  }
+
   type uploadPictureUsingPOSTParams = {
     /** pictureId */
-    pictureId?: number
+    pictureId: number
   }
 
   type User = {
@@ -267,18 +301,39 @@ declare namespace API {
     username?: string
   }
 
-  type UserUpdateDTO = {
-    age?: number
-    avatar?: string
-    email?: string
-    gender?: number
+  type VO = {
+    /** 分类 */
+    category?: string
+    /** 创建时间 */
+    createTime?: string
+    /** 图片格式 */
+    format?: string
+    /** 图片高度 */
+    height?: number
+    /** id */
     id?: number
-    nickname?: string
-    phone?: string
-    username?: string
+    /** 简介 */
+    introduction?: string
+    /** 图片名称 */
+    name?: string
+    /** 图片比例 */
+    scale?: number
+    /** 文件体积 */
+    size?: number
+    /** 标签 */
+    tags?: string[]
+    /** 更新时间 */
+    updateTime?: string
+    /** 图片 url */
+    url?: string
+    user?: VO3
+    /** 用户 id */
+    userId?: number
+    /** 图片宽度 */
+    width?: number
   }
 
-  type VO = {
+  type VO1 = {
     /** 年龄 */
     age?: number
     /** 头像 */
@@ -301,7 +356,14 @@ declare namespace API {
     username?: string
   }
 
-  type VO1 = {
+  type VO2 = {
+    /** 分类列表 */
+    categoryList?: string[]
+    /** 标签列表 */
+    tagList?: string[]
+  }
+
+  type VO3 = {
     /** 年龄 */
     age?: number
     /** 头像 */

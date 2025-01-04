@@ -25,7 +25,7 @@ import type { UploadProps } from 'ant-design-vue'
 import { uploadPictureUsingPost } from '@/api/pictureController.ts'
 
 interface Props {
-  picture?: API.PictureVO
+  picture?: API.VO
   onSuccess?: (newPicture: API.PictureVO) => void
 }
 

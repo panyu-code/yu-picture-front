@@ -3,7 +3,7 @@
 import request from '../plugins/request.ts'
 
 /** 新增用户-管理员权限 POST /api/user/add */
-export async function addUserUsingPost(body: API.DTO2, options?: { [key: string]: any }) {
+export async function addUserUsingPost(body: API.DTO3, options?: { [key: string]: any }) {
   return request<API.ResponseResultBoolean_>('/api/user/add', {
     method: 'POST',
     headers: {
@@ -16,7 +16,7 @@ export async function addUserUsingPost(body: API.DTO2, options?: { [key: string]
 
 /** 获取当前登录用户 GET /api/user/current */
 export async function getCurrentUserUsingGet(options?: { [key: string]: any }) {
-  return request<API.ResponseResultVO_>('/api/user/current', {
+  return request<API.ResponseResultVO3>('/api/user/current', {
     method: 'GET',
     ...(options || {}),
   })
@@ -49,8 +49,8 @@ export async function getUserByIdUsingGet(
 }
 
 /** 查询用户列表 POST /api/user/list */
-export async function listUserUsingPost(body: API.DTO1, options?: { [key: string]: any }) {
-  return request<API.ResponseResultPageVO_>('/api/user/list', {
+export async function listUserUsingPost(body: API.DTO5, options?: { [key: string]: any }) {
+  return request<API.ResponseResultPageVO2>('/api/user/list', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -61,8 +61,8 @@ export async function listUserUsingPost(body: API.DTO1, options?: { [key: string
 }
 
 /** 用户登录 POST /api/user/login */
-export async function doLoginUsingPost(body: API.DTO4, options?: { [key: string]: any }) {
-  return request<API.ResponseResultVO_>('/api/user/login', {
+export async function doLoginUsingPost(body: API.DTO7, options?: { [key: string]: any }) {
+  return request<API.ResponseResultVO3>('/api/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export async function doLogoutUsingPost(options?: { [key: string]: any }) {
 }
 
 /** 用户注册 POST /api/user/register */
-export async function registerUserUsingPost(body: API.DTO3, options?: { [key: string]: any }) {
+export async function registerUserUsingPost(body: API.DTO6, options?: { [key: string]: any }) {
   return request<API.ResponseResultLong_>('/api/user/register', {
     method: 'POST',
     headers: {
@@ -93,10 +93,7 @@ export async function registerUserUsingPost(body: API.DTO3, options?: { [key: st
 }
 
 /** 修改用户 POST /api/user/update */
-export async function updateUserUsingPost(
-  body: API.UserUpdateDTO,
-  options?: { [key: string]: any }
-) {
+export async function updateUserUsingPost(body: API.DTO4, options?: { [key: string]: any }) {
   return request<API.ResponseResultBoolean_>('/api/user/update', {
     method: 'POST',
     headers: {
