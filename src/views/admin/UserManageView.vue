@@ -27,6 +27,7 @@
       :data-source="dataList"
       :pagination="pagination"
       @change="handleTableChange"
+      :loading="loading"
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'avatar'">
@@ -126,6 +127,8 @@ const columns = [
     align: 'center',
   },
 ]
+
+const loading = ref(true)
 /**
  * 数据
  */
@@ -161,6 +164,7 @@ const pagination = computed(() => {
  * 获取数据
  */
 const fetchData = async (current) => {
+  loading.value = true
   if (current) {
     searchParams.current = current
   }
@@ -171,6 +175,7 @@ const fetchData = async (current) => {
   } else {
     message.error(res.msg)
   }
+  loading.value = false
 }
 
 const handleTableChange = (pagination: any) => {
