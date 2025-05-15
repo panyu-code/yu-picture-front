@@ -20,8 +20,11 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8080', // 后端服务地址
         changeOrigin: true, // 是否修改源
-        rewrite: (path) => path.replace(/^\/api/, ''), // 去掉 /api 前缀
+        rewrite: (path) => path.replace('/api', ''), // 去掉 /api 前缀
       },
     },
+  },
+  build: {
+    outDir: 'yu-picture-front',
   },
 })

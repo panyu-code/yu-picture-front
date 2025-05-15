@@ -9,7 +9,7 @@ export async function deletePictureUsingDelete(
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
-  return request<API.ResponseResultBoolean_>(`/api/picture/delete/${param0}`, {
+  return request<API.ResponseResultBoolean_>(`/picture/delete/${param0}`, {
     method: 'DELETE',
     params: { ...queryParams },
     ...(options || {}),
@@ -18,7 +18,7 @@ export async function deletePictureUsingDelete(
 
 /** 编辑图片（给用户使用） POST /api/picture/edit */
 export async function editPictureUsingPost(body: API.Pinyin__, options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/picture/edit', {
+  return request<API.ResponseResultBoolean_>('/picture/edit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export async function getPictureByIdUsingGet(
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
-  return request<API.ResponseResultPicture_>(`/api/picture/get/${param0}`, {
+  return request<API.ResponseResultPicture_>(`/picture/get/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
@@ -49,7 +49,7 @@ export async function getPictureVoByIdUsingGet(
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
-  return request<API.ResponseResultVO_>(`/api/picture/get/vo/${param0}`, {
+  return request<API.ResponseResultVO_>(`/picture/get/vo/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
@@ -58,7 +58,7 @@ export async function getPictureVoByIdUsingGet(
 
 /** 分页获取图片列表（仅管理员可用） POST /api/picture/list/page */
 export async function listPictureByPageUsingPost(body: API.DTO2, options?: { [key: string]: any }) {
-  return request<API.ResponseResultPagePicture_>('/api/picture/list/page', {
+  return request<API.ResponseResultPagePicture_>('/picture/list/page', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ export async function listPictureVoByPageUsingPost(
   body: API.DTO2,
   options?: { [key: string]: any }
 ) {
-  return request<API.ResponseResultPageVO_>('/api/picture/list/page/vo', {
+  return request<API.ResponseResultPageVO_>('/picture/list/page/vo', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export async function listPictureVoByPageUsingPost(
 
 /** 图片审核 POST /api/picture/review */
 export async function doPictureReviewUsingPost(body: API.DTO, options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/picture/review', {
+  return request<API.ResponseResultBoolean_>('/picture/review', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export async function doPictureReviewUsingPost(body: API.DTO, options?: { [key: 
 
 /** 获取图片标签和分类列表 GET /api/picture/tag_category */
 export async function listPictureTagCategoryUsingGet(options?: { [key: string]: any }) {
-  return request<API.ResponseResultVO2>('/api/picture/tag_category', {
+  return request<API.ResponseResultVO2>('/picture/tag_category', {
     method: 'GET',
     ...(options || {}),
   })
@@ -105,7 +105,7 @@ export async function listPictureTagCategoryUsingGet(options?: { [key: string]: 
 
 /** 更新图片（仅管理员可用） POST /api/picture/update */
 export async function updatePictureUsingPost(body: API.Pinyin_2, options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/picture/update', {
+  return request<API.ResponseResultBoolean_>('/picture/update', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export async function uploadPictureUsingPost(
     }
   })
 
-  return request<API.ResponseResultVO_>('/api/picture/upload-file', {
+  return request<API.ResponseResultVO_>('/picture/upload-file', {
     method: 'POST',
     params: {
       ...params,
@@ -162,7 +162,7 @@ export async function uploadPictureByUrlUsingPost(
   params: API.uploadPictureByUrlUsingPOSTParams,
   options?: { [key: string]: any }
 ) {
-  return request<API.ResponseResultVO_>('/api/picture/upload-url', {
+  return request<API.ResponseResultVO_>('/picture/upload-url', {
     method: 'POST',
     params: {
       ...params,

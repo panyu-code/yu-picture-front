@@ -9,6 +9,7 @@
         size="large"
         @search="onSearch"
         allow-clear
+        @change="onSearch"
       />
     </div>
     <!--   分类和标签筛选 -->

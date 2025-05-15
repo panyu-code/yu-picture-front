@@ -4,7 +4,7 @@ import request from '../plugins/request.ts'
 
 /** 新增用户-管理员权限 POST /api/user/add */
 export async function addUserUsingPost(body: API.DTO3, options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/user/add', {
+  return request<API.ResponseResultBoolean_>('/user/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export async function addUserUsingPost(body: API.DTO3, options?: { [key: string]
 
 /** 获取当前登录用户 GET /api/user/current */
 export async function getCurrentUserUsingGet(options?: { [key: string]: any }) {
-  return request<API.ResponseResultVO3>('/api/user/current', {
+  return request<API.ResponseResultVO3>('/user/current', {
     method: 'GET',
     ...(options || {}),
   })
@@ -24,7 +24,7 @@ export async function getCurrentUserUsingGet(options?: { [key: string]: any }) {
 
 /** 删除用户-批量删除 DELETE /api/user/delete */
 export async function deleteUserUsingDelete(body: number[], options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/user/delete', {
+  return request<API.ResponseResultBoolean_>('/user/delete', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export async function getUserByIdUsingGet(
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
-  return request<API.ResponseResultUser_>(`/api/user/id/${param0}`, {
+  return request<API.ResponseResultUser_>(`/user/id/${param0}`, {
     method: 'GET',
     params: { ...queryParams },
     ...(options || {}),
@@ -50,7 +50,7 @@ export async function getUserByIdUsingGet(
 
 /** 查询用户列表 POST /api/user/list */
 export async function listUserUsingPost(body: API.DTO5, options?: { [key: string]: any }) {
-  return request<API.ResponseResultPageVO2>('/api/user/list', {
+  return request<API.ResponseResultPageVO2>('/user/list', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export async function listUserUsingPost(body: API.DTO5, options?: { [key: string
 
 /** 用户登录 POST /api/user/login */
 export async function doLoginUsingPost(body: API.DTO7, options?: { [key: string]: any }) {
-  return request<API.ResponseResultVO3>('/api/user/login', {
+  return request<API.ResponseResultVO3>('/user/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export async function doLoginUsingPost(body: API.DTO7, options?: { [key: string]
 
 /** 退出登录 POST /api/user/logout */
 export async function doLogoutUsingPost(options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/user/logout', {
+  return request<API.ResponseResultBoolean_>('/user/logout', {
     method: 'POST',
     ...(options || {}),
   })
@@ -82,7 +82,7 @@ export async function doLogoutUsingPost(options?: { [key: string]: any }) {
 
 /** 用户注册 POST /api/user/register */
 export async function registerUserUsingPost(body: API.DTO6, options?: { [key: string]: any }) {
-  return request<API.ResponseResultLong_>('/api/user/register', {
+  return request<API.ResponseResultLong_>('/user/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export async function registerUserUsingPost(body: API.DTO6, options?: { [key: st
 
 /** 修改用户 POST /api/user/update */
 export async function updateUserUsingPost(body: API.DTO4, options?: { [key: string]: any }) {
-  return request<API.ResponseResultBoolean_>('/api/user/update', {
+  return request<API.ResponseResultBoolean_>('/user/update', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

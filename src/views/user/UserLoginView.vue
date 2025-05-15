@@ -60,6 +60,7 @@ const submit = async (values: any) => {
   if (res.code === 0) {
     message.success('登录成功')
     userStore.login(res.data)
+    console.log('userStore.login', res.data)
     // 启动检查器
     await startExpirationChecker()
     await router.replace('/')

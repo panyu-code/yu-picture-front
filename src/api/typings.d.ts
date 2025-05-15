@@ -233,13 +233,6 @@ declare namespace API {
     timestamp?: number
   }
 
-  type ResponseResultString_ = {
-    code?: number
-    data?: string
-    msg?: string
-    timestamp?: number
-  }
-
   type ResponseResultUser_ = {
     code?: number
     data?: User
@@ -268,21 +261,16 @@ declare namespace API {
     timestamp?: number
   }
 
-  type testDownloadFileUsingGETParams = {
-    /** filepath */
-    filepath?: string
-  }
-
   type uploadPictureByUrlUsingPOSTParams = {
     /** pictureId */
-    pictureId: number
+    pictureId?: number
     /** url */
-    url: string
+    url?: string
   }
 
   type uploadPictureUsingPOSTParams = {
     /** pictureId */
-    pictureId: number
+    pictureId?: number
   }
 
   type User = {
