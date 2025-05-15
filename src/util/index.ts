@@ -21,7 +21,7 @@ export function downloadImage(url?: string, fileName?: string) {
   if (!url) {
     return
   }
-  saveAs(url, fileName)
+  saveAs(url)
 }
 
 export const startExpirationChecker = () => {

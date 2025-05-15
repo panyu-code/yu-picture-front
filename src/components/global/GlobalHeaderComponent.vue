@@ -36,7 +36,7 @@
             </template>
           </a-dropdown>
         </div>
-        <a-button v-else type="primary" @click="toLogin">登录</a-button>
+        <a-button v-else-if="!isLoginOrRegisterPage" type="primary" @click="toLogin">登录</a-button>
       </a-col>
     </a-row>
     <a-drawer
@@ -84,6 +84,11 @@ const currentUser = computed(() => {
 })
 const loginFlag = computed(() => {
   return userStore.isLoggedIn
+})
+
+const isLoginOrRegisterPage = computed(() => {
+  const path = router.currentRoute.value.path
+  return path === '/user/login' || path === '/user/register'
 })
 
 const registerTime = computed(() => {

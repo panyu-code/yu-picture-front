@@ -50,12 +50,17 @@
           </template>
         </a-input-password>
       </a-form-item>
+      <div class="login">
+        <span class="tips">已有账号？</span>
+        <router-link to="/user/login">点我登录</router-link>
+      </div>
       <a-form-item class="submit">
-        <a-button style="width: 90%" type="primary" html-type="submit">提交</a-button>
+        <a-button style="width: 90%" type="primary" html-type="submit">注册</a-button>
       </a-form-item>
     </a-form>
   </div>
 </template>
+
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue'
 import { message } from 'ant-design-vue'
@@ -88,6 +93,7 @@ const fail = (errorInfo: any) => {
 
 onMounted(() => {})
 </script>
+
 <style scoped>
 #userRegisterView {
   max-width: 500px;
@@ -105,7 +111,22 @@ onMounted(() => {})
   color: #bbb;
 }
 
+#userRegisterView .login {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+#userRegisterView .tips {
+  color: #bbb;
+}
+
 #userRegisterView .submit {
   text-align: center;
+  padding-left: 20px;
+}
+
+#userRegisterView :deep(.ant-form-item-label) {
+  width: 80px;
+  text-align: right;
 }
 </style>

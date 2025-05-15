@@ -140,7 +140,7 @@ const doDelete = () => {
           message.success('删除成功')
           router.back()
         } else {
-          message.error('删除失败!'+res.msg)
+          message.error('删除失败!' + res.msg)
         }
       })
     },
@@ -149,7 +149,7 @@ const doDelete = () => {
 
 // 处理下载
 const doDownload = () => {
-  downloadImage(picture.value.url, picture.value.name)
+  downloadImage(picture.value.url , picture.value.name)
 }
 
 onMounted(() => {
