@@ -92,7 +92,7 @@
             <a-button
               type="primary"
               danger
-              v-if="record.reviewStatus !== PIC_REVIEW_STATUS_ENUM.REJECT"
+              v-if="record.reviewStatus !== PIC_REVIEW_STATUS_ENUM.PASS && record.reviewStatus !== PIC_REVIEW_STATUS_ENUM.REJECT"
               @click="handleReview(record, PIC_REVIEW_STATUS_ENUM.REJECT)"
               >拒绝
             </a-button>

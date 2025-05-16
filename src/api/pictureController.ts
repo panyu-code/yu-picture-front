@@ -170,3 +170,15 @@ export async function uploadPictureByUrlUsingPost(
     ...(options || {}),
   })
 }
+
+/** 更新图片（仅管理员可用） POST /api/picture/update */
+export async function batchUploadUsingPost(body:any, options?: { [key: string]: any }) {
+  return request<API.ResponseResultBoolean_>('/picture/batchUpload', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  })
+}
